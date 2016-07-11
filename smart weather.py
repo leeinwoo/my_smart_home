@@ -20,7 +20,7 @@ def get_current_weather(city):
   return
 
 def set_gTTS(weather):  
-  if("맑" in weather):
+  if("맑" in weather or "흐" in weather):
     sound = ("현재 날씨는 {0}입니다. ".format(weather))
   elif("비" in weather):
     sound = ("현재 날씨는 {0}입니다. 외출 시 우산 챙겨가세요. ".format(weather))
@@ -38,7 +38,7 @@ def play_sound():
   time.sleep(5)
 
 def set_led(weather):
-  if("맑" in weather):
+  if("맑" in weather or "흐" in weather):
     GPIO.output(24, False)
     GPIO.output(23, True)
   elif("비" in weather or "눈" in weather):
@@ -61,8 +61,8 @@ GPIO.setup(23, GPIO.OUT)
 GPIO.setup(24, GPIO.OUT)
 
 locate="부산"
-alarm_h=7
-alarm_m=0
+alarm_h=15
+alarm_m=35
 
 while 1:
   t = get_localtime()
